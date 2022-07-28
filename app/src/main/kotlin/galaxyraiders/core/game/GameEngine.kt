@@ -82,8 +82,6 @@ class GameEngine(
     this.moveSpaceObjects()
     this.trimSpaceObjects()
     this.generateAsteroids()
-    this.generateExplosionsWhenCollide()
-    this.field.updateExplosions()
   }
 
   fun handleCollisions() {
@@ -104,7 +102,6 @@ class GameEngine(
   fun trimSpaceObjects() {
     this.field.trimAsteroids()
     this.field.trimMissiles()
-    this.field.trimExplosions()
   }
 
   fun generateAsteroids() {
@@ -117,16 +114,6 @@ class GameEngine(
 
   fun renderSpaceField() {
     this.visualizer.renderSpaceField(this.field)
-  }
-
-  fun generateExplosionsWhenCollide() {
-    for (i in 0 until this.field.missiles.size) {
-      for (j in 0 until this.field.asteroids.size) {
-        if (this.field.missiles[i].impacts(this.field.asteroids[j])) {
-          this.field.generateExplosions(this.field.missiles[i].center, this.field.asteroids[j].radius)
-        }
-      }
-    }
   }
 }
 

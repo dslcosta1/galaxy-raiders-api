@@ -1,14 +1,13 @@
+@file:Suppress("UNUSED_PARAMETER") // <- REMOVE
 package galaxyraiders.core.physics
-
-import kotlin.math.sqrt
 
 data class Point2D(val x: Double, val y: Double) {
   operator fun plus(p: Point2D): Point2D {
-    return Point2D(this.x + p.x, this.y + p.y)
+    return INVALID_POINT
   }
 
   operator fun plus(v: Vector2D): Point2D {
-    return Point2D(this.x + v.dx, this.y + v.dy)
+    return INVALID_POINT
   }
 
   override fun toString(): String {
@@ -16,30 +15,26 @@ data class Point2D(val x: Double, val y: Double) {
   }
 
   fun toVector(): Vector2D {
-    return Vector2D(this.x, this.y)
+    return INVALID_VECTOR
   }
 
   fun impactVector(p: Point2D): Vector2D {
-    val dx = this.x - p.x
-    val dy = this.y - p.y
-    return Vector2D(sqrt(dx * dx), sqrt(dy * dy))
+    return INVALID_VECTOR
   }
 
   fun impactDirection(p: Point2D): Vector2D {
-    return this.impactVector(p).unit
+    return INVALID_VECTOR
   }
 
   fun contactVector(p: Point2D): Vector2D {
-    return this.impactVector(p).normal
+    return INVALID_VECTOR
   }
 
   fun contactDirection(p: Point2D): Vector2D {
-    return this.impactDirection(p).normal
+    return INVALID_VECTOR
   }
 
   fun distance(p: Point2D): Double {
-    val dx = this.x - p.x
-    val dy = this.y - p.y
-    return sqrt(dx * dx + dy * dy)
+    return INVALID_DOUBLE
   }
 }
