@@ -18,6 +18,6 @@ class Explosion(
   }
 
   fun isTrigged(): Boolean {
-    return (time > 0)
+    return time > 0
   }
 }
